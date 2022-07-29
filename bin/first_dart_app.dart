@@ -1,15 +1,22 @@
-import 'package:first_dart_app/first_dart_app.dart' as first_dart_app;
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+
 
 void main(List<String> arguments) {
-  User newUser = User(name: "andro", photoUrl: "some.png");
+ final user1 = User(firstname: "andro", lastname: "eugenio");
+
+print(user1.fullName);
 }
 
 class User {
-  String name;
-  String photoUrl;
-  User ({
-    required this.name,
-    required this.photoUrl
-  })
+  final String firstname;
+  final String lastname;
   
+  User({
+    required this.firstname,
+    required this.lastname,
+  });
+
+  String getFullName() => "${firstname} ${lastname}";
+  
+  String get fullName => "${firstname} ${lastname}";
 }
