@@ -1,63 +1,37 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, must_call_super
 
-import 'dart:convert';
-import 'dart:html';
+void main(List<String> arguments) {}
 
-import 'package:meta/meta.dart';
+//interface
+abstract class DataReader<T> {
+  late T myField;
 
-void main(List<String> arguments) {
-  final admin =
-      Admin(firstname: 'john', lastname: 'doe', specialAdminField: 1.5);
-
-  final user = admin as User;
+  T getSomeData();
 }
 
-abstract class User extends Object {
-  // abstract class can have a property or method without a body but you need to implement it to its child class when you make it as a parent class
-  final String _firstname;
-  final String _lastname;
+//class 1
 
-  User(this._firstname, this._lastname);
+class StringDataReader implements DataReader<String> {
+  @override
+  String myField;
 
-  factory User.admin() {
-    return Admin(specialAdminField: 123, firstname: 'john', lastname: 'doe');
+  @override
+  String getSomeData() {
+    return 'some string here';
   }
 
-  // Admin returnNewAdmin() {
-  //   return Admin(specialAdminField: 123, firstname: 'john', lastname: 'doe');
-  // }
-
-  String get fullname => '${_firstname} ${_lastname}';
-
-  @mustCallSuper
-  void signOut() {
-    print('Signing Out');
-  }
-
-  void myMethod();
-  int get myProperty;
+  StringDataReader({required this.myField});
 }
 
-class Admin extends User {
-  final double specialAdminField;
-  Admin(
-      {required String firstname,
-      required String lastname,
-      required this.specialAdminField})
-      : super(firstname, lastname);
+//class 2
+class IntDataReader implements DataReader<int> {
+  @override
+  int myField;
 
   @override
-  String get fullname => 'admin: ${super.fullname}';
-
-  @override
-  void signOut() {
-    print('admin sign out steps');
-    super.signOut();
+  int getSomeData() {
+    return 5555;
   }
 
-  void myMethod() {
-    print('mymethod with implementation');
-  }
-
-  int get myProperty => 15;
+  IntDataReader({required this.myField});
 }
