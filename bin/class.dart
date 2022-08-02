@@ -1,11 +1,9 @@
-part './otherfile.dart';
+import 'dart:convert';
+import 'dart:mirrors';
 
-void main() {
-  final x = "hello";
-  print(x.duplicate());
-  final someClass = NewClass();
-  print(someClass._privateField);
-}
+import 'package:meta/meta.dart';
+
+// part './otherfile.dart';
 
 extension StringDuplication on String {
   String duplicate() {
